@@ -1,17 +1,8 @@
 ScriptName dubhGenericMonitorPerkEffectScript Extends ActiveMagicEffect
 
-ObjectReference[] NearbyActors = None
-
-Actor Property PlayerRef Auto
-
-Int Property TimerSeconds Auto
-Int Property TimerID Auto
-
-Formlist Property ActorTypeKeywordsList Auto
-
-Perk Property MonitorPerk Auto
-Spell Property MonitorSpell Auto
-Float Property MonitorRadius Auto
+; -----------------------------------------------------------------------------
+; EVENTS
+; -----------------------------------------------------------------------------
 
 Event OnEffectStart(Actor akTarget, Actor akCaster)
 	StartTimer(TimerSeconds, TimerID)
@@ -37,6 +28,10 @@ Event OnTimer(Int aiTimerID)
 		EndWhile
 	EndIf
 EndEvent
+
+; -----------------------------------------------------------------------------
+; FUNCTIONS
+; -----------------------------------------------------------------------------
 
 ObjectReference[] Function FilterArray(ObjectReference[] akArray)
 	ObjectReference[] kResult = None
@@ -69,7 +64,7 @@ ObjectReference[] Function FilterArray(ObjectReference[] akArray)
 	Return kResult
 EndFunction
 
-Bool Function AddSpellToNearbyActors(ObjectReference[] akArray)
+Function AddSpellToNearbyActors(ObjectReference[] akArray)
 	If akArray
 		Int i = 0
 		Bool bBreak = False
@@ -87,11 +82,23 @@ Bool Function AddSpellToNearbyActors(ObjectReference[] akArray)
 	EndIf
 EndFunction
 
+; -----------------------------------------------------------------------------
+; LOCAL VARIABLES
+; -----------------------------------------------------------------------------
 
+ObjectReference[] NearbyActors = None
 
+; -----------------------------------------------------------------------------
+; PROPERTIES
+; -----------------------------------------------------------------------------
 
+Actor Property PlayerRef Auto
 
+Int Property TimerSeconds Auto
+Int Property TimerID Auto
 
+Formlist Property ActorTypeKeywordsList Auto
 
-Event OnCripple(ActorValue akActorValue, bool abCrippled)
-EndEvent
+Perk Property MonitorPerk Auto
+Spell Property MonitorSpell Auto
+Float Property MonitorRadius Auto
