@@ -1,4 +1,4 @@
-# fireundubh's Papyrus Templates
+# fireundubh's Papyrus Frameworks and Examples
 
 ## Fallout 4
 
