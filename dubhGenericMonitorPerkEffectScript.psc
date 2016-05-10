@@ -45,14 +45,16 @@ ObjectReference[] Function FilterArray(ObjectReference[] akArray)
 				bBreak = True
 			EndIf
 
-			ObjectReference kItem = akArray[i] as ObjectReference
+			If !bBreak
+				ObjectReference kItem = akArray[i] as ObjectReference
 
-			If kItem.Is3DLoaded() && !kItem.IsDisabled() && !kItem.IsDeleted()
-				Actor kActor = kItem as Actor
+				If kItem.Is3DLoaded() && !kItem.IsDisabled() && !kItem.IsDeleted()
+					Actor kActor = kItem as Actor
 
-				If kActor && (kActor != PlayerRef)
-					If !kActor.IsDead()
-						kResult.Add(kItem, 1)
+					If kActor && (kActor != PlayerRef)
+						If !kActor.IsDead()
+							kResult.Add(kItem, 1)
+						EndIf
 					EndIf
 				EndIf
 			EndIf
@@ -69,13 +71,15 @@ Function AddSpellToNearbyActors(ObjectReference[] akArray)
 		Int i = 0
 		Bool bBreak = False
 
-		While i < akArray.Length
+		While (i < akArray.Length) && !bBreak
 			If !PlayerRef.HasPerk(MonitorPerk)
 				bBreak = True
 			EndIf
 
-			Actor kActor = akArray[i] as Actor
-			kActor.AddSpell(MonitorSpell, False)
+			If !bBreak
+				Actor kActor = akArray[i] as Actor
+				kActor.AddSpell(MonitorSpell, False)
+			EndIf
 
 			i += 1
 		EndWhile
