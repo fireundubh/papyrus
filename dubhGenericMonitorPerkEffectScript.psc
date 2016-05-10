@@ -21,7 +21,7 @@ Event OnTimer(Int aiTimerID)
 			If !bBreak
 				NearbyActors = PlayerRef.FindAllReferencesWithKeyword(ActorTypeKeywordsList.GetAt(i), MonitorRadius)
 				NearbyActors = FilterArray(NearbyActors)
-				AddPerkToNearbyActors(NearbyActors)
+				AddSpellToNearbyActors(NearbyActors)
 			EndIf
 
 			i += 1
